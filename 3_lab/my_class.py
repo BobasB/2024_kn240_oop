@@ -15,7 +15,7 @@ class MyClass:
     __private_one = 1
     total_students = 0
 
-    def __init__(self, surname:str, name:str, mark:int): # у конструктор передаються аргументи
+    def __init__(self, surname:str, name:str, mark:int=0): # у конструктор передаються аргументи
         print("Викликали конструктор!")
         # а тут визначаємо атрибути обєкта
         self.surname = surname
@@ -75,6 +75,38 @@ class MyClass:
         if getattr(self, "mark") and getattr(value, "mark", None):
             return True if self.mark == value.mark else False
         return None
+    
+    def sleep_first_class(self):
+        print(f"{self.name} проспав!")
+        return True
+    
+    def answer_question(self, mark=None):
+        if mark:
+            print(f"Успішно відповів на питання, та отримав оцінку {mark}")
+            self.mark = mark
+        else:
+            print("Відповідь без оцінки")
+    
+    def sleep():
+        """Цей меод трохи неправильний, бо його неможна викликати з обєкту
+        """
+        print("Проспав, то сплю далі.")
+
+    @staticmethod
+    def late():
+        print("Запізнився на пару і мене записали на вході!")
+
+    @classmethod
+    def student_base(cls, surname:str, name:str):
+        print("Створюємо студента без оцінки, задавши дефолтне значення 0")
+        return cls(surname, name, 0)
+    
+    @classmethod
+    def student_full_name(cls, full_name:str):
+        """створення обєкту студента з його повного ʼПрізвище Імяʼ
+        """
+        surname, name = full_name.split(" ") 
+        return cls(surname, name, 0)
         
 class MySecondClass:
     pass
