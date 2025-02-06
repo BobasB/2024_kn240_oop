@@ -1,2 +1,3 @@
 __pycache__/
-my_env/
+.my_env/
+source .my_env/bin/activate
