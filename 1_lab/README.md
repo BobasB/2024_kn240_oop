@@ -31,3 +31,6 @@ pipenv --python 3.12
 pipenv install flake8 --dev
 pipenv install requesta
 pipenv install
+
+pipenv run python 1.py
+pipenv run flake8 .
