@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f090c9b499b0a8e33716f7c2324a1b840a6699131fb8e6b3ef5bd36bef047117"
+            "sha256": "c03d4a4d5f743ba0b3d88be79a7806b6cd6d81f5149f2b4bbdfc77437b64f1be"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_full_version": "3.12.7",
+            "python_full_version": "3.12.9",
             "python_version": "3.12"
         },
         "sources": [
@@ -152,12 +152,12 @@
     "develop": {
         "flake8": {
             "hashes": [
-                "sha256:049d058491e228e03e67b390f311bbf88fce2dbaa8fa673e7aea87b7198b8d38",
-                "sha256:597477df7860daa5aa0fdd84bf5208a043ab96b8e96ab708770ae0364dd03213"
+                "sha256:1cbc62e65536f65e6d754dfe6f1bada7f5cf392d6f5db3c2b85892466c3e7c1a",
+                "sha256:c586ffd0b41540951ae41af572e6790dbd49fc12b3aa2541685d253d9bd504bd"
             ],
             "index": "pip_conf_index_global",
             "markers": "python_full_version >= '3.8.1'",
-            "version": "==7.1.1"
+            "version": "==7.1.2"
         },
         "mccabe": {
             "hashes": [
