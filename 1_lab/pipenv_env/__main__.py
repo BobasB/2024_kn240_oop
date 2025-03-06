@@ -17,5 +17,5 @@ if __name__ == "__main__":
     dog = Dog("Buddy")
     cat = Cat("Whiskers")
 
-    print(f"{dog.name} каже: {dog.make_sound()}")  # Виведе: Buddy каже: Woof! Woof!
-    print(f"{cat.name} каже: {cat.make_sound()}")  # Виведе: Whiskers каже: Meow!
+    print(f"{dog.name} каже: {dog.make_sound()}, {dog.type}")  # Виведе: Buddy каже: Woof! Woof!
+    print(f"{cat.name} каже: {cat.make_sound()}, {cat.hight}")  # Виведе: Whiskers каже: Meow!

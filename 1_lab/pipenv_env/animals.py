@@ -1,3 +1,4 @@
+# Приклад НАСЛІДУВАННЯ
 # Батьківський клас (базовий)
 class Animal:
     def __init__(self, name: str):
@@ -9,12 +10,20 @@ class Animal:
 
 # Дочірній клас (наслідує Animal)
 class Dog(Animal):
+    def __init__(self, name):
+        self.type = "собака"
+        super().__init__(name)
+
     def make_sound(self):
         """Перевизначення методу make_sound для класу Dog"""
         return "Woof! Woof!"
 
 # Ще один дочірній клас
 class Cat(Animal):
+    def __init__(self, name):
+        self.hight = 10
+        super().__init__(name)
+    
     def make_sound(self):
         """Перевизначення методу make_sound для класу Cat"""
         return "Meow!"
