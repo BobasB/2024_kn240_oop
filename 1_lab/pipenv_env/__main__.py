@@ -1,5 +1,6 @@
 from bank import BankAccount
 from animals import *
+from abstraction import *
 
 if __name__ == "__main__":
     # Демонстрація роботи
@@ -19,3 +20,9 @@ if __name__ == "__main__":
 
     print(f"{dog.name} каже: {dog.make_sound()}, {dog.type}")  # Виведе: Buddy каже: Woof! Woof!
     print(f"{cat.name} каже: {cat.make_sound()}, {cat.hight}")  # Виведе: Whiskers каже: Meow!
+
+    # Демонстрація роботи
+    vehicles = [Car("Tesla"), Boat("Yamaha"), Airplane("Boeing")]
+
+    for vehicle in vehicles:
+        print(vehicle.move())
