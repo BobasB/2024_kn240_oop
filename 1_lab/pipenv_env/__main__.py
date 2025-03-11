@@ -1,6 +1,7 @@
 from bank import BankAccount
-from animals import *
+from inheritance import *
 from abstraction import *
+from polimorfism import *
 
 if __name__ == "__main__":
     # Демонстрація роботи
@@ -26,3 +27,14 @@ if __name__ == "__main__":
 
     for vehicle in vehicles:
         print(vehicle.move())
+    
+    # Функція, яка демонструє поліморфізм
+    def animal_sound(animal: Animal):
+        """Приймає будь-який об'єкт, що наслідує Animal, і викликає make_sound()"""
+        print(f"{animal.__class__.__name__} каже: {animal.make_sound()}")
+
+    # Демонстрація роботи
+    animals = [Dog("Шарік"), Cat("Мурзик"), Cow("Корівка")]
+
+    for animal in animals:
+        animal_sound(animal)
