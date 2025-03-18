@@ -5,8 +5,11 @@ import argparse
 
 import shutil
 from datetime import datetime
+import my_module
 
 import logging
+
+logger = logging.getLogger(__name__)
 
 logging.basicConfig(filename="logs.log", 
                     level=logging.DEBUG, 
