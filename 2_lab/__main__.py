@@ -6,28 +6,38 @@ import argparse
 import shutil
 from datetime import datetime
 
+import logging
+
+logging.basicConfig(filename="logs.log", 
+                    level=logging.DEBUG, 
+                    encoding='utf8',
+                    format="%(filename)s:%(levelname)s:%(asctime)s:%(message)s")
+
 def call_help():
-    print("Ми викликали Help для нашої програми")
+    logging.info("Ми викликали Help для нашої програми")
 
 def display_version():
-    print("Ми вивели версію")
+    logging.info("Ми вивели версію")
 
-def move_file_to_date_folder(filename):
+def move_file_to_date_folder(filename: str):
     # Перевіряємо, чи існує файл
     if not os.path.exists(filename):
-        print(f"Файл '{filename}' не знайдено.")
+        logging.warning(f"Файл '{filename}' не знайдено.")
         return
 
     # Отримуємо поточну дату у форматі YYYY-MM-DD
     date_folder = datetime.now().strftime("%Y-%m-%d")
+    logging.info(f"Назва папки буде: {date_folder}")
 
     # Створюємо папку, якщо вона не існує
     if not os.path.exists(date_folder):
+        logging.debug("Створюємо нову папку")
         os.makedirs(date_folder)
 
-    # Переміщуємо файл у папку
+    # Переміщуємо файл у папкуї
+    logging.debug("Починаємо переміщувати файл")
     shutil.move(filename, os.path.join(date_folder, filename))
-    print(f"Файл '{filename}' переміщено в папку '{date_folder}'.")
+    logging.info(f"Файл '{filename}' переміщено в папку '{date_folder}'.")
 
 if __name__ == "__main__":
     if False: #argv[0] == "./__main__.py":
@@ -43,6 +53,7 @@ if __name__ == "__main__":
         description="Експерементуємо з аргументами")
     parser.add_argument("-hh", action='store_true', help="Наш тестовий ключ")
     parser.add_argument("-v", "--version", action='store_true', help="Ми додали нашу Версію!")
+    parser.add_argument("--filename", type=str, help="Назва файлу для копіювання")
     args = parser.parse_args()
 
     #print(parser.print_help())
@@ -52,5 +63,4 @@ if __name__ == "__main__":
         display_version()
     
     # Приклад виклику функції
-    file_to_move = "example.txt"  # Замініть на реальну назву файлу
-    move_file_to_date_folder(file_to_move)
+    move_file_to_date_folder(args.filename)
