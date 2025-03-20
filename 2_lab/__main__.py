@@ -11,36 +11,37 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 logging.basicConfig(filename="logs.log", 
                     level=logging.DEBUG, 
                     encoding='utf8',
-                    format="%(filename)s:%(levelname)s:%(asctime)s:%(message)s")
+                    format="%(name)s:%(filename)s:%(levelname)s:%(asctime)s:%(message)s")
 
 def call_help():
-    logging.info("Ми викликали Help для нашої програми")
+    logger.info("Ми викликали Help для нашої програми")
 
 def display_version():
-    logging.info("Ми вивели версію")
+    logger.info("Ми вивели версію")
 
 def move_file_to_date_folder(filename: str):
     # Перевіряємо, чи існує файл
     if not os.path.exists(filename):
-        logging.warning(f"Файл '{filename}' не знайдено.")
+        logger.warning(f"Файл '{filename}' не знайдено.")
         return
 
     # Отримуємо поточну дату у форматі YYYY-MM-DD
     date_folder = datetime.now().strftime("%Y-%m-%d")
-    logging.info(f"Назва папки буде: {date_folder}")
+    logger.info(f"Назва папки буде: {date_folder}")
 
     # Створюємо папку, якщо вона не існує
     if not os.path.exists(date_folder):
-        logging.debug("Створюємо нову папку")
+        logger.debug("Створюємо нову папку")
         os.makedirs(date_folder)
 
     # Переміщуємо файл у папкуї
-    logging.debug("Починаємо переміщувати файл")
+    logger.debug("Починаємо переміщувати файл")
     shutil.move(filename, os.path.join(date_folder, filename))
-    logging.info(f"Файл '{filename}' переміщено в папку '{date_folder}'.")
+    logger.info(f"Файл '{filename}' переміщено в папку '{date_folder}'.")
 
 if __name__ == "__main__":
     if False: #argv[0] == "./__main__.py":
