@@ -1,6 +1,9 @@
 import os
 import random
 import string
+import time
+from threading import Thread
+from concurrent.futures import ThreadPoolExecutor
 
 def generate_random_text(length=100, words=True):
     """
@@ -22,13 +25,41 @@ def write_random_to_file(filename, text_length=100, use_words=True):
     :param text_length: Довжина випадкового тексту
     :param use_words: Використовувати слова або окремі символи
     """
+    print(f"Створюємо файл {filename}")
     with open(filename, 'w', encoding='utf-8') as file:
+        time.sleep(random.randint(1,5))
         file.write(generate_random_text(text_length, use_words))
     print(f"Файл '{filename}' успішно створено та заповнено випадковими даними.")
 
 if __name__ == "__main__":
-    filename = input("Введіть назву файлу: ")
-    text_length = int(input("Введіть довжину тексту (кількість символів або слів): "))
-    use_words = input("Використовувати випадкові слова (так/ні)? ").strip().lower() == "так"
     
-    write_random_to_file(filename, text_length, use_words)
+    text_length = int(50)
+    use_words = True
+    
+    start = time.time()
+    tl = list()
+    #for i in range(5):
+    #    filename = f"data_{i}.txt"
+    #    t = Thread(target=write_random_to_file, args=[filename, text_length, use_words])
+    #    #write_random_to_file(filename, text_length, use_words)
+    #    tl.append(t)
+    #    t.start()
+    #    print(f"Запустили тред для файла {filename}")
+    
+    #for j in tl:
+    #    j.join()
+    #    print("Зібрали результати")
+    
+    end = time.time()
+    print(f"Генерації файла зайняла {end-start}")
+
+    # Пробуємо Екзеклютор для тредів
+    start = time.time()
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        arguments = [f"data_{i}.txt" for i in range(5)]
+        for _ in executor.map(write_random_to_file, arguments):
+            print(_)
+    
+
+    end = time.time()
+    print(f"Генерації файлів зайняла {end-start}")
