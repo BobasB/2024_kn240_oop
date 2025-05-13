@@ -8,5 +8,5 @@ services:
     environment:
       - FLASK_ENV=development
     volumes:
-      - .:/app
-    command: flask run --host=0.0.0.0
+      - ./src/web_app:/app
+    # command: flask run --host=0.0.0.0
