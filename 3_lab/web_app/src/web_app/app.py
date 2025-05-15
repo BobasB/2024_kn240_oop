@@ -22,7 +22,8 @@ def init_db():
     cur.execute("""
         CREATE TABLE IF NOT EXISTS visits (
             id SERIAL PRIMARY KEY,
-            visited_at TIMESTAMP NOT NULL
+            visited_at TIMESTAMP NOT NULL,
+            c INT NOT NULL
         );
     """)
     conn.commit()
@@ -43,8 +44,8 @@ def info():
         cur = conn.cursor()
 
         # Insert a new visit with current timestamp
-        #now = datetime.now()
-        cur.execute("INSERT INTO visits (visited_at) VALUES (%s);", (C,))
+        now = datetime.now()
+        cur.execute("INSERT INTO visits (visited_at, c) VALUES (%s,%s);", (now, C))
         conn.commit()
 
         # Read number of visits and last visit timestamp
