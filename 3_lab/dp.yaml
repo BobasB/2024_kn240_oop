@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: res-bbuhyl
+    namespace: default
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            ctaService: res-bbuhyl
+    template:
+        metadata:
+            labels:
+                ctaService: res-bbuhyl
+                ctaUser: bbuhyl
+        spec:
+            serviceAccountName: default
+            containers:
+                - name: res-bbuhyl
+                  image: python:latest
+                  imagePullPolicy: Always
+                  resources:
+                      requests:
+                          memory: "256M"
+                          cpu: "100m"
+                  command: [ '/bin/bash', '-c', '--' ]
+                  args: [ 'sleep 10s; echo "crash!"; exit 1' ]
